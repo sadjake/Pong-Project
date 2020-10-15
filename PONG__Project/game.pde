@@ -1,4 +1,5 @@
 void game () {
+  background(0);
   //paddles
   circle(leftx, lefty, leftd);
   circle(rightx, righty, rightd);

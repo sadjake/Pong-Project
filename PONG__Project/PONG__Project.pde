@@ -20,7 +20,7 @@ float ballx, bally, balld;
 
 void setup() {
   size(800,600);
-  mode = INTRO;
+  mode = GAME;
   
   //initialize paddles 
   leftx = 0;
