@@ -17,6 +17,9 @@ float leftx, lefty, leftd, rightx, righty, rightd;
 //ball 
 float ballx, bally, balld;
 
+//keyboard variables
+boolean wkey, skey, upkey, downkey;
+
 
 void setup() {
   size(800,600);
@@ -35,6 +38,9 @@ void setup() {
   ballx = width/2;
   bally = height/2;
   balld = 100;
+  
+  //initialize keyboard variables
+  wkey = skey = upkey = downkey = false;
 }
 
 void draw() {
