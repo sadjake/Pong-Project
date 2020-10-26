@@ -10,4 +10,4 @@ void keyReleased() {
   if (key == 's' || key == 'S') skey = false;
   if (keyCode == UP) upkey = false;
   if (keyCode == DOWN) downkey = false;
-}
+} 

@@ -1,5 +1,19 @@
 void game () {
-  background(0);
+  //background
+  background(#7E531D);
+  fill(255);
+  stroke(255);
+  line(400, 0, 400, 600);
+  line(200, 0, 200, 600);
+  line(600, 0, 600, 600);
+
+  //scoreboard 
+  textSize(50);
+  fill(255);
+  text("" + lscore, 210, 100);
+  fill(0);
+  text("" + rscore, 560, 100);
+  timer = timer -1;
 
   //draw paddles
   circle(leftx, lefty, leftd);
@@ -8,20 +22,51 @@ void game () {
   //move paddles
   if (wkey == true) lefty = lefty -5;
   if (skey == true) lefty = lefty +5;
-  if (upkey == true) righty = righty -5;
-  if (downkey == true) righty = righty +5;
+
+  if (AI == false) {
+    if (upkey == true) righty = righty -5;
+    if (downkey == true) righty = righty +5;
+  } if (AI == true) {
+      righty = bally - 50;
+  }
 
   // DISPLAY BALL
   strokeWeight(5);
   fill(255);
   circle(ballx, bally, balld);
 
-  ballx = ballx + vx;
-  bally = bally + vy;
+  // PAUSE BUTTON
+  stroke(0);
+  fill(255);
+  circle(100, 100, 100);
+  fill(0);
+  text("||", 86, 119);
+
+  //move ball
+  if (timer < 0) {
+    ballx = ballx + vx;
+    bally = bally + vy;
+  }
 
   // BOUNCING
   if (bally < balld/2 || bally > height-balld/2) {
+    wall.rewind();
+    wall.play();
     vy = vy * -1;
+  }
+
+  //limiting the paddle
+  if (lefty < leftd/2) {
+    lefty = leftd/2;
+  }
+  if (righty < rightd/2) {
+    righty = rightd/2;
+  }
+  if (lefty > 500) {
+    lefty = 500;
+  }
+  if (righty > 500) {
+    righty = 500;
   }
 
   // POINTS SCORED
@@ -29,8 +74,11 @@ void game () {
     rscore++;
     ballx = width/2;
     bally = height/2;
-    vx = 2 * cos(a);
-    vy = 2 * sin(a);
+    vx = -2 * cos(a);
+    vy = -2 * sin(a);
+    timer = 100;
+    score.rewind();
+    score.play();
   }
 
   if (ballx > width+balld) {
@@ -39,23 +87,35 @@ void game () {
     bally = height/2;
     vx = 2 * cos(a);
     vy = 2 * sin(a);
+    timer = 100;
+    score.rewind();
+    score.play();
   }
 
-  // SCORE
+  if (lscore == 3 || rscore == 3) {
+    mode = GAMEOVER;
+  }
 
   // COLLISION
   // left paddle
   if (dist(leftx, lefty, ballx, bally) < leftd/2 + balld/2) {
+    leftpaddle.rewind();
+    leftpaddle.play();
     vx = (ballx-leftx)/20;
     vy = (bally-lefty)/20;
   }
 
   // right paddle
   if (dist(rightx, righty, ballx, bally) < rightd/2 + balld/2) {
+    rightpaddle.rewind();
+    rightpaddle.play();
     vx = (ballx-rightx)/20;
     vy = (bally-righty)/20;
   }
 }
 
 void gameClicks () {
+  if (dist(mouseX, mouseY, 100, 100) < 50) {
+    mode = PAUSE;
+  }
 }
