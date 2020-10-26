@@ -13,6 +13,7 @@ void intro () {
   fill(255);
   stroke(0);
   strokeWeight(5);
+  tactile(100,450,200,100);
   rect(100, 450, 200, 100);
   fill(0);
   textFont(mentality);
@@ -23,11 +24,20 @@ void intro () {
   fill(255);
   stroke(0);
   strokeWeight(5);
+  tactile(500,450,200,100);
   rect(500, 450, 200, 100);
   fill(0);
   textFont(mentality);
   textSize(30);
   text("2 PLAYERS", 525, 510);
+}
+
+void tactile (int x, int y, int w, int h) {
+  if (mouseX > x && mouseX < x+w && mouseY > y && mouseY < y+h) {
+    stroke(#7E531D);
+  } else {
+    stroke (0);
+  }
 }
 
 void introClicks() {

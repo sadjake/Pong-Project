@@ -26,8 +26,24 @@ void game () {
   if (AI == false) {
     if (upkey == true) righty = righty -5;
     if (downkey == true) righty = righty +5;
-  } if (AI == true) {
-      righty = bally - 50;
+  } 
+  if (AI == true) {
+    if (righty - balld > bally) {
+      balldown = true;
+      ballup = false;
+    } else if (righty + balld < bally) {
+      balldown = false;
+      ballup = true;
+    } else {
+      balldown = false;
+      ballup = false;
+    }
+  }
+
+  if (balldown == true) {
+    righty = righty - 5;
+  } else if (ballup == true) {
+    righty = righty + 5;
   }
 
   // DISPLAY BALL
@@ -36,11 +52,19 @@ void game () {
   circle(ballx, bally, balld);
 
   // PAUSE BUTTON
+  if (dist(100, 100, mouseX, mouseY)<50) {
+  stroke(255);
+  fill(255);
+  circle(100, 100, 100);
+  fill(0);
+  text("||", 86, 119);
+  } else {
   stroke(0);
   fill(255);
   circle(100, 100, 100);
   fill(0);
   text("||", 86, 119);
+  }
 
   //move ball
   if (timer < 0) {

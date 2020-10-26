@@ -22,6 +22,8 @@ final int GAMEOVER = 4;
 
 //entity variables
 boolean AI;
+boolean ballup;
+boolean balldown;
 
 //paddles
 float leftx, lefty, leftd, rightx, righty, rightd; 
@@ -65,7 +67,7 @@ void setup() {
   //initialize ball
   ballx = width/2;
   bally = height/2;
-  balld = 100;
+  balld = 25;
 
   vx = random(-5, 8);
   vy = random(-5, 8);
