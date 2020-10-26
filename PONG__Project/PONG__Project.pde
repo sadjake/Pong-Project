@@ -67,7 +67,7 @@ void setup() {
   //initialize ball
   ballx = width/2;
   bally = height/2;
-  balld = 25;
+  balld = 100;
 
   vx = random(-5, 8);
   vy = random(-5, 8);
