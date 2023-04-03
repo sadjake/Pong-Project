@@ -74,7 +74,7 @@ void introClicks() {
   //initialize ball
   ballx = width/2;
   bally = height/2;
-  balld = 100;
+  balld = 40;
 
   vx = random(-5, 8);
   vy = random(-5, 8);
