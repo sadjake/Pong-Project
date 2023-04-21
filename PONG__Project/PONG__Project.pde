@@ -7,7 +7,6 @@ import ddf.minim.ugens.*;
 
 // PONG! Project
 // Jake Choi
-// Block 1-2B
 // October 15, 2020
 
 //mode framework
